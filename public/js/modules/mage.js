@@ -9,13 +9,17 @@ export class Mage extends Hero{
 
     }
     defense=()=>{
-        this.attaque *= 0.5;
-        this.vie *= 2.5;
+        // this.attaque *= 0.5;
+        // this.vie *= 2.5;
+        this.vie -= (10+5);
         this.posture = "defense";
     }
-    attaque=()=>{
-        this.attaque *= 1.4;
-        this.vie *= 0.75;
+    attaque=(a)=>{
+        // this.attaque *= 1.4;
+        // this.vie *= 0.75;
+        a.vie -= 10;
+        console.log(`${this.nom} attaque ${a.nom} et il lui reste ${a.vie} de vie`);
+        this.manaPoint();
         this.posture="attaque";
     }
     jePasseMonTour=()=>{
@@ -25,10 +29,11 @@ export class Mage extends Hero{
         
         if (this.mana>2) {
             this.mana -= 2;
-            console.log(` mana ${this.mana} restant`);
+            console.log(`${this.nom} a mana ${this.mana} restant`);
         }else{
-            console.log("TESTaaa");
+            // console.log("TESTaaa");
             this.jePasseMonTour();
+            console.log(`${this.nom} obtiendra ${this.mana} au prochain tour`);
             this.mana +=7;
         }
     }

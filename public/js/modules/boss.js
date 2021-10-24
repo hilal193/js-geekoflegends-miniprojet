@@ -1,3 +1,4 @@
+import { vingtPourcent } from "../main.js";
 export class Boss {
     constructor(nom, vie, attaque) {
         this.nom = nom;
@@ -11,7 +12,8 @@ export class Boss {
     // }
     
     momentEnigme = (premierHero, deuxiemeHero, troisiemeHero) => {
-        if (this.vie<=20) {
+        if (this.vie<=vingtPourcent/100*20){
+        // if (this.vie<=20) {
             
             let siContinue = true;
             let compteur = 0;
@@ -19,17 +21,17 @@ export class Boss {
             let reponseUtilisateur;
     
             // plus petit ou egal pour les 3 chance
-            while (siContinue == true && compteur <= 3) {
+            while (siContinue == true && compteur < 3) {
                 switch (random) {
                     case 1:
                         reponseUtilisateur = prompt("Comment s'apelle le héros principal de DBZ ?");
-                        if(reponseUtilisateur.toLowerCase()=="goku") {
+                        if(reponseUtilisateur.toLowerCase().includes("goku")) {
                             siContinue = false;
                         }
                         break;
                     case 2:
                         reponseUtilisateur = prompt("Comment s'apelle le centre de formation Molengeek ?");
-                        if(reponseUtilisateur.toLowerCase()=="molengeek") {
+                        if(reponseUtilisateur.toLowerCase().includes("molengeek")) {
                             siContinue = false;
                         }
                         break;
@@ -55,15 +57,15 @@ export class Boss {
             }
             switch (siContinue) {
                 case true:
-                    console.log("le hero est mort");
-                    premierHero.pv = 0;
-                    deuxiemeHero.pv = 0;
-                    troisiemeHero.pv = 0;
+                    alert("Les heros sont mort! Vous avez perdu");
+                    premierHero.vie = 0;
+                    deuxiemeHero.vie = 0;
+                    troisiemeHero.vie = 0;
                     break;
             
                 default:
-                    console.log("le monstre est mort");
-                    this.pv=0;
+                    alert("Le monstre est mort! Bravo, vous avez gagné");
+                    this.vie=0;
                     break;
             }
             
